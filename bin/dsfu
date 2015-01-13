@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'dsfu'
+require_relative '../lib/dsfu'
+Dsfu::CLI.start
