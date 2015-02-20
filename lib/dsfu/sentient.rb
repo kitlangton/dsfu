@@ -39,8 +39,8 @@ module Dsfu
       fill_in product_name_field, with: product.name
       click_button "Next"
 
-      fill_in display_name_field, with: product.display_name
-      find("#ctl00_ctl00_C_M_ctl00_W_ctl01__SKU").native.send_keys "\t#{product.display_description}"
+      fill_in display_name_field, with: "#{product.category} #{product.display_name}"
+      find("#ctl00_ctl00_C_M_ctl00_W_ctl01__SKU").native.send_keys "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t#{product.display_description}"
 
       upload_image(product.image_path)
       change_settings

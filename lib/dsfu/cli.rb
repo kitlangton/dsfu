@@ -14,14 +14,27 @@ module Dsfu
 
     desc "csv", "Creates a new CSV for editing"
     def csv
+      files = []
+      Dir.new(Dir.pwd).each do |file|
+        if file =~ /.png/
+          if file =~ /(.+) - ([\d.]+)[xX ]+([\d.]+).png/
+            files << [ file, $1, $2, $3]
+          else
+            files << [ file ]
+          end
+        end
+      end
       CSV.open("product_listing.csv", "wb") do |csv|
         csv << ['File Name', 'Display Name', 'Width', 'Height', 'Price']
+        files.each do |file|
+          csv << file
+        end
       end
       `open product_listing.csv`
     end
 
-    desc "upload COMPANY", "uploads products in directory to the digital store front under COMPANY"
-    def upload(company_input)
+    desc "upload COMPANY CATEGORY", "uploads products in directory to the digital store front under COMPANY"
+    def upload(company_input, category_input)
       csv = Dir.glob("*.csv")[0]
       products = Dsfu::CsvProductFactory.new(csv).build
 
@@ -29,6 +42,7 @@ module Dsfu
         products.each do |product|
           product.find_image_path
           product.company = company_input
+          product.category = category_input
           new_product product
         end
       end
