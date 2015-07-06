@@ -3,6 +3,7 @@ require_relative "dsfu/cli"
 require_relative "dsfu/csv_product_factory"
 require_relative "dsfu/product"
 require_relative "dsfu/sentient"
+require 'timeout'
 
 module Dsfu
 end

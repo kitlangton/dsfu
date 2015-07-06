@@ -1,6 +1,7 @@
 require 'thor'
 require 'csv'
 require 'terminal-table'
+require 'timeout'
 
 module Dsfu
   class CLI < Thor
