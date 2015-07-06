@@ -1,6 +1,6 @@
 module Dsfu
   require 'cgi'
-  # require 'timeout'
+  require 'timeout'
   require 'capybara'
 
   class SentientStoreFront
